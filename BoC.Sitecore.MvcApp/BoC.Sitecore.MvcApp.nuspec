@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>BoC.Sitecore.MvcApp</id>
+    <version>1.0.0.0</version>
+    <title>Sitecore Mvc starter app</title>
+    <authors>Chris van de Steeg</authors>
+    <owners>Chris van de Steeg</owners>
+    <licenseUrl>http://en.wikipedia.org/wiki/MIT_License#License_terms</licenseUrl>
+    <projectUrl>http://github.com/csteeg</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Starter app to easily get started with BoC.Sitecore.Mvc</description>
+    <releaseNotes>First release.</releaseNotes>
+    <copyright>Copyright 2012</copyright>
+    <tags>Sitecore mvc</tags>
+    <dependencies>
+      <dependency id="BoC.Sitecore.Mvc" version="1.0.0.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\MvcApp\*.*" target="MvcApp" exclude="*.dll" />
+    <file src="..\MvcApp\Properties\*.*" target="MvcApp/Properties" exclude="*.dll" />
+    <file src="..\MvcApp\Content\**\*.*" target="MvcApp/Content" exclude="*.dll" />
+    <file src="..\MvcApp\Controllers\**\*.*" target="MvcApp/Controllers" exclude="*.dll" />
+    <file src="..\MvcApp\Models\**\*.*" target="MvcApp/Models" exclude="*.dll" />
+    <file src="..\MvcApp\Scripts\**\*.*" target="MvcApp/Scripts" exclude="*.dll" />
+    <file src="..\MvcApp\Views\**\*.*" target="MvcApp/Views" exclude="*.dll" />
+    <file src="Tools\*.*" target="Tools" exclude="*.dll" />
+    <file src="Content\*.*" target="Content" exclude="*.dll" />
+  </files>
+</package>

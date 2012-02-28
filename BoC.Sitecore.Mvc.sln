@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoC.Sitecore.Mvc", "BoC.Sitecore.Mvc\BoC.Sitecore.Mvc.csproj", "{96BD9C25-74F3-4C3D-818A-0161A0066E37}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcApp", "MvcApp\MvcApp.csproj", "{A9262354-F004-4ACF-86A8-721A195D54C1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BoC.Sitecore.MvcApp", "BoC.Sitecore.MvcApp", "{1D26D399-D0C8-4DA7-B370-58B8C86C4752}"
+	ProjectSection(SolutionItems) = preProject
+		BoC.Sitecore.MvcApp\BoC.Sitecore.MvcApp.nuspec = BoC.Sitecore.MvcApp\BoC.Sitecore.MvcApp.nuspec
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{D4EE3D2B-5C97-4154-8410-C68B0407298A}"
+	ProjectSection(SolutionItems) = preProject
+		BoC.Sitecore.MvcApp\Tools\install.ps1 = BoC.Sitecore.MvcApp\Tools\install.ps1
+		BoC.Sitecore.MvcApp\Tools\transform.proj = BoC.Sitecore.MvcApp\Tools\transform.proj
+		BoC.Sitecore.MvcApp\Tools\uninstall.ps1 = BoC.Sitecore.MvcApp\Tools\uninstall.ps1
+		BoC.Sitecore.MvcApp\Tools\web.transform.config = BoC.Sitecore.MvcApp\Tools\web.transform.config
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Content", "Content", "{8733048C-4DC5-4AE5-86D2-A630944FB12B}"
+	ProjectSection(SolutionItems) = preProject
+		BoC.Sitecore.MvcApp\Content\readme.txt = BoC.Sitecore.MvcApp\Content\readme.txt
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{96BD9C25-74F3-4C3D-818A-0161A0066E37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96BD9C25-74F3-4C3D-818A-0161A0066E37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96BD9C25-74F3-4C3D-818A-0161A0066E37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96BD9C25-74F3-4C3D-818A-0161A0066E37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9262354-F004-4ACF-86A8-721A195D54C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9262354-F004-4ACF-86A8-721A195D54C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9262354-F004-4ACF-86A8-721A195D54C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9262354-F004-4ACF-86A8-721A195D54C1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D4EE3D2B-5C97-4154-8410-C68B0407298A} = {1D26D399-D0C8-4DA7-B370-58B8C86C4752}
+		{8733048C-4DC5-4AE5-86D2-A630944FB12B} = {1D26D399-D0C8-4DA7-B370-58B8C86C4752}
+	EndGlobalSection
+EndGlobal
