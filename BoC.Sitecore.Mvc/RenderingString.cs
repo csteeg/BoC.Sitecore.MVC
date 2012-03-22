@@ -13,11 +13,17 @@ namespace BoC.Sitecore.Mvc
 {
     public class RenderingString: IHtmlString
     {
+        private readonly string _value;
         private readonly Item _item;
         private readonly string _fieldName;
 
         public RenderingString()
         {
+        }
+
+        private RenderingString(string value)
+        {
+            _value = value;
         }
 
         public RenderingString(Item item, string fieldName)
@@ -53,6 +59,10 @@ namespace BoC.Sitecore.Mvc
         }
         public string ToHtmlString()
         {
+            if (_value != null)
+            {
+                return new HtmlString(_value).ToHtmlString();
+            }
             //pff really stupid: UIUtil from sitecore requests the Page.request through HttpContext.current.handler
             //why not httpcontext.current.request? :(
             //we'll have to fake a page now:
@@ -62,12 +72,21 @@ namespace BoC.Sitecore.Mvc
 
         public override string ToString()
         {
+            if (_value != null)
+            {
+                return new HtmlString(_value).ToString();
+            }
             return _item[_fieldName];
         }
 
         public static implicit operator string(RenderingString value)
         {
             return value == null ? null : value.ToString();
+        }
+
+        public static implicit operator RenderingString(string value)
+        {
+            return new RenderingString(value);
         }
 
     }

@@ -4,6 +4,8 @@ namespace MvcTestApp.Models
 {
     public class ItemView
     {
-        public RenderingString DisplayName { get; set; }
+        public string DisplayName { get; set; }
+        public RenderingString Title {get; set;}
+            
     }
 }

@@ -41,6 +41,12 @@ namespace BoC.Sitecore.Mvc
 		//private readonly string templateName = "Mvc Layout Template";
 		//protected virtual string TemplateName { get { return templateName; } }
 
+        public override LanguageCollection GetLanguages(CallContext context)
+        {
+            //we don't have any languages but the default ones....
+            return new LanguageCollection();
+        }
+
 		public override ItemDefinition GetItemDefinition(ID itemId, CallContext context)
 		{
 			Assert.ArgumentNotNull(itemId, "itemId");

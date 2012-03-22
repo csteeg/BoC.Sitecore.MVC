@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>BoC.Sitecore.MvcApp</id>
-    <version>1.0.0.0</version>
+    <version>1.0.1</version>
     <title>Sitecore Mvc starter app</title>
     <authors>Chris van de Steeg</authors>
     <owners>Chris van de Steeg</owners>
@@ -14,7 +14,7 @@
     <copyright>Copyright 2012</copyright>
     <tags>Sitecore mvc</tags>
     <dependencies>
-      <dependency id="BoC.Sitecore.Mvc" version="1.0.0.0" />
+      <dependency id="BoC.Sitecore.Mvc" version="1.0.1" />
     </dependencies>
   </metadata>
   <files>
