@@ -51,7 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Initialize\RegisterValueProvider.cs" />
+    <Compile Include="Initialize\InitMvc.cs" />
     <Compile Include="MvcHelpers\SitecoreValueProvider.cs" />
     <Compile Include="MvcAbortLoadLayout.cs" />
     <Compile Include="MvcHelpers\ControllerAction.cs" />
@@ -62,6 +62,7 @@
     <Compile Include="MvcSubLayoutDataProvider.cs" />
     <Compile Include="MvcLayoutDataProvider.cs" />
     <Compile Include="RenderingString.cs" />
+    <Compile Include="SitecoreMvcAreaRegistration.cs" />
     <Compile Include="UI\MvcActionLoader.cs" />
     <Compile Include="MvcFixHttpProcessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

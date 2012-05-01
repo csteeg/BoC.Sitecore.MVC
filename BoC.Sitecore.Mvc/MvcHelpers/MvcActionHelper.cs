@@ -33,6 +33,7 @@ namespace BoC.Sitecore.Mvc.MvcHelpers
 
 			routeValues["action"] = actionName;
 			routeValues["controller"] = controllerName;
+		    routeValues["area"] = SitecoreMvcAreaRegistration.SitecoreAreaName;
 
 			vpd = RouteTable.Routes.GetVirtualPathForArea(new RequestContext(httpContext, routeData), null /* name */, routeValues);
 			if (vpd == null)

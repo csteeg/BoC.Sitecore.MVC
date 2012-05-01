@@ -7,13 +7,13 @@ using Sitecore.Web.UI.WebControls;
 
 namespace BoC.Sitecore.Mvc.Initialize
 {
-    public class RegisterValueProvider
+    public class InitMvc
     {
         public void Process(PipelineArgs args)
         {
-            ValueProviderFactories.Factories.Add(
-                    new SitecoreValueProviderFactory()
-                );
+            ValueProviderFactories.Factories.Add(new SitecoreValueProviderFactory());
+            AreaRegistration.RegisterAllAreas();
+            GlobalFilters.Filters.Add(new HandleErrorAttribute());
         }
     }
 
