@@ -19,8 +19,8 @@ namespace BoC.Sitecore.Mvc
 		private readonly ID masterId = ID.Null;
 		protected virtual ID MasterId { get { return masterId; } }
 		protected virtual ID BaseTemplateId { get { return TemplateIDs.Layout; } }
-	    internal static ID parentID = ItemIDs.Layouts;
-        protected virtual ID ParentId { get { return parentID; } }
+	    internal static ID parentId = ItemIDs.Layouts;
+        protected virtual ID ParentId { get { return parentId; } }
 		private readonly ID folderTemplateId = new ID("{93227C5D-4FEF-474D-94C0-F252EC8E8219}"); ///sitecore/templates/System/Layout/Layout Folder
 		protected virtual ID FolderTemplateId { get { return folderTemplateId; } }
 		private readonly ID folderId = new ID("{11111111-1EE3-4181-A7E8-DFC489EAB2C4}");
@@ -109,10 +109,10 @@ namespace BoC.Sitecore.Mvc
 				var action = ControllerAction.GetControllerAction(ParentId, item.ID);
 				if (action != null && HttpContext.Current != null)
 				{
-					VirtualPathData vpd;
-					MvcActionHelper.GetRouteData(new HttpContextWrapper(HttpContext.Current), action.ActionName, action.ControllerType.ControllerName, null, false, out vpd);
+					//VirtualPathData vpd;
+					//MvcActionHelper.GetRouteData(new HttpContextWrapper(HttpContext.Current), action.ActionName, action.ControllerType.ControllerName, null, false, out vpd);
 
-					list.Add(LayoutFieldIDs.Path, vpd.VirtualPath);
+					//list.Add(LayoutFieldIDs.Path, vpd.VirtualPath);
 					list.Add(FieldIDs.Icon, Themes.MapTheme("SoftwareV2/16x16/element.png"));
 				}
 			}

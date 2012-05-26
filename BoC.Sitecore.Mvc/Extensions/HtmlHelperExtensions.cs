@@ -18,7 +18,7 @@ using Sitecore.Pipelines;
 using Sitecore.Pipelines.RenderLayout;
 using Sitecore.Web.UI.WebControls;
 
-namespace BoC.Sitecore.Mvc.HtmlExtensions
+namespace BoC.Sitecore.Mvc.Extensions
 {
 	public static class HtmlHelperExtensions
 	{

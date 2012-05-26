@@ -16,8 +16,7 @@ namespace BoC.Sitecore.Mvc.MvcHelpers
 			string actionName, 
 			string controllerName,
 			RouteValueDictionary additionalRouteValues,
-			bool isChildRequest,
-			out VirtualPathData vpd)
+			bool isChildRequest)
 		{
 			if (String.IsNullOrEmpty(actionName))
 			{
@@ -28,19 +27,13 @@ namespace BoC.Sitecore.Mvc.MvcHelpers
 				throw new ArgumentException("Value cannot be null or empty.", "controllerName");
 			}
 
-			var routeData = RouteTable.Routes.GetRouteData(httpContext) ?? new RouteData();
+			var routeData = new RouteData();
 			var routeValues = MergeDictionaries(additionalRouteValues, routeData.Values);
 
 			routeValues["action"] = actionName;
 			routeValues["controller"] = controllerName;
-		    routeValues["area"] = SitecoreMvcAreaRegistration.SitecoreAreaName;
-
-			vpd = RouteTable.Routes.GetVirtualPathForArea(new RequestContext(httpContext, routeData), null /* name */, routeValues);
-			if (vpd == null)
-			{
-				throw new InvalidOperationException("No route in the route table matches the supplied values");
-			}
-
+		    //routeValues["area"] = SitecoreMvcAreaRegistration.SitecoreAreaName;
+            
 			if (isChildRequest)
 			{
 				if (routeValues.ContainsKey("area"))
@@ -58,7 +51,7 @@ namespace BoC.Sitecore.Mvc.MvcHelpers
 				}
 			}
 
-			return CreateRouteData(vpd.Route, routeValues, vpd.DataTokens);
+			return CreateRouteData(new SitecoreRoute(), routeValues, new RouteValueDictionary());
 		}
 
 		private static string childActionValuesKey;

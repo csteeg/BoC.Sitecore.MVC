@@ -10,11 +10,15 @@
     <projectUrl>http://github.com/csteeg</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Starter app to easily get started with BoC.Sitecore.Mvc</description>
-    <releaseNotes>Version 1.1 uses areas and allows for all url routedata to be parsed.</releaseNotes>
+    <releaseNotes>
+      - Version 1.2 much better MVC integration by using a SitecoreRoute instead of using standard routing
+                    Also moved web.config transform to the base package, since that should happen for all projects that use boc.sitecore.mvc
+      - Version 1.1 uses areas and allows for all url routedata to be parsed.
+    </releaseNotes>
     <copyright>Copyright 2012</copyright>
     <tags>Sitecore mvc</tags>
     <dependencies>
-      <dependency id="BoC.Sitecore.Mvc" version="1.1.0" />
+      <dependency id="BoC.Sitecore.Mvc" version="1.2.0" />
     </dependencies>
   </metadata>
   <files>

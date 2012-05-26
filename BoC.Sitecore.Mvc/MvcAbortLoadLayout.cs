@@ -18,7 +18,7 @@ namespace BoC.Sitecore.Mvc
             if (System.Web.HttpContext.Current != null && !String.IsNullOrEmpty(System.Web.HttpContext.Current.Request["id"]))
             {
                 var id = new ID(System.Web.HttpContext.Current.Request["id"]);
-                if (ControllerAction.GetControllerAction(MvcLayoutDataProvider.parentID, id) != null ||
+                if (ControllerAction.GetControllerAction(MvcLayoutDataProvider.parentId, id) != null ||
                     ControllerAction.GetControllerAction(MvcSubLayoutDataProvider.parentId, id) != null)
                 {
                     args.Body = args.Html = "It is not possible to design MVC layouts";

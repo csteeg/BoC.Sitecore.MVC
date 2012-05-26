@@ -10,12 +10,17 @@
     <projectUrl>http://github.com/csteeg</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>First release.</releaseNotes>
+    <releaseNotes>
+      - Version 1.2 much better MVC integration by using a SitecoreRoute instead of using standard routing
+        Also moved web.config transform to the base package, since that should happen for all projects that use boc.sitecore.mvc
+      - Version 1.1 uses areas and allows for all url routedata to be parsed.
+    </releaseNotes>
     <copyright>Copyright 2012</copyright>
     <tags>Sitecore mvc</tags>
 
   </metadata>
   <files>
     <file src="Content\**" target="Content" />
+    <file src="Tools\**" target="Tools" />
   </files>
 </package>

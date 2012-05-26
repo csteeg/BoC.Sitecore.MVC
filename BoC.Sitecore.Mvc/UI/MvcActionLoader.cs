@@ -41,14 +41,12 @@ namespace BoC.Sitecore.Mvc.UI
 			}
 
 			var httpContext = new HttpContextWrapper(Context);
-			VirtualPathData vpd;
 			var routeData = MvcActionHelper.GetRouteData(
 				httpContext,
 				action.ActionName,
 				action.ControllerType.ControllerName,
 				additionalRouteValues,
-				true,
-				out vpd
+				true
 				);
 			var handler = new MvcHandler(new RequestContext(httpContext, routeData));
 			httpContext.Server.Execute(HttpHandlerUtil.WrapForServerExecute(handler), output, true /* preserveForm */);

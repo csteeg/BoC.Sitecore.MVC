@@ -51,18 +51,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\UrlHelperExtensions.cs" />
     <Compile Include="Initialize\InitMvc.cs" />
     <Compile Include="MvcHelpers\SitecoreValueProvider.cs" />
     <Compile Include="MvcAbortLoadLayout.cs" />
     <Compile Include="MvcHelpers\ControllerAction.cs" />
-    <Compile Include="HtmlExtensions\HtmlHelperExtensions.cs">
+    <Compile Include="Extensions\HtmlHelperExtensions.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="MvcHelpers\ControllerType.cs" />
     <Compile Include="MvcSubLayoutDataProvider.cs" />
     <Compile Include="MvcLayoutDataProvider.cs" />
     <Compile Include="RenderingString.cs" />
-    <Compile Include="SitecoreMvcAreaRegistration.cs" />
+    <Compile Include="SitecoreRoute.cs" />
     <Compile Include="UI\MvcActionLoader.cs" />
     <Compile Include="MvcFixHttpProcessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -76,6 +77,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="BoC.Sitecore.Mvc.nuspec" />
+    <None Include="Tools\install.ps1" />
+    <None Include="Tools\transform.proj" />
+    <None Include="Tools\uninstall.ps1" />
+    <None Include="Tools\web.transform.config" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
