@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web.Mvc;
+using BoC.Sitecore.Mvc.Extensions;
 using Sitecore.Data;
-using Sitecore.Data.IDTables;
 
 namespace BoC.Sitecore.Mvc.MvcHelpers
 {
@@ -45,7 +47,7 @@ namespace BoC.Sitecore.Mvc.MvcHelpers
 		{
 			get
 			{
-				return id ?? (id = GetId(ParentId, GetKey()).ID.ToGuid()).Value;
+				return id ?? (id = GetId(ParentId, GetKey())).Value;
 			}
 		}
 
@@ -62,14 +64,10 @@ namespace BoC.Sitecore.Mvc.MvcHelpers
 			return String.CompareOrdinal(ActionName, other.ActionName);
 		}
 
-		private static IDTableEntry GetId(Guid parentId, string key)
+		private static Guid GetId(Guid parentId, string key)
 		{
-			var id = IDTable.GetID("MVC: " + parentId.ToString(), key);
-			if (id == null)
-			{
-				id = IDTable.GetNewID("MVC: " + parentId.ToString(), key, new ID(parentId));
-			}
-			return id;
+            //removed IDTable dependency, since that's really for import-like data.. it doesn't support packaging for example
+		    return (parentId.ToString().ToLower() + key.ToLower()).ToUniqueGuid();
 		}
 
 		private class InternalControllerAction : IComparable<InternalControllerAction>, IComparable

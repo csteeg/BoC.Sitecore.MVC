@@ -1,28 +1,17 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Reflection;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.WebPages;
 using Sitecore.Configuration;
-using Sitecore.Diagnostics;
 using Sitecore.Layouts;
-using Sitecore.Pipelines;
-using Sitecore.Pipelines.RenderLayout;
 using Sitecore.Web.UI.WebControls;
 
-namespace BoC.Sitecore.Mvc.Extensions
+//hmm, it's the easiest way to use extensions, but not sure if it's ok to use the system.web.mvc namespace yet
+namespace System.Web.Mvc.Html
 {
-	public static class HtmlHelperExtensions
+	public static class SitecoreHtmlHelperExtensions
 	{
-		public static HelperResult RenderPlaceHolder(this HtmlHelper html, string key)
+		public static HelperResult SitecorePlaceholder(this HtmlHelper html, string key)
 		{
 			return new HelperResult(
 				writer => 
