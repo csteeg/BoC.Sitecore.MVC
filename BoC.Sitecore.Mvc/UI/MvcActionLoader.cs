@@ -23,24 +23,25 @@ namespace BoC.Sitecore.Mvc.UI
 			var action = ControllerAction.GetControllerAction(MvcSubLayoutDataProvider.parentId, rendering.RenderingID);
 			if (action == null)
 				return;
-			
-            var additionalRouteValues = new RouteValueDictionary();
+
+            var httpContext = new HttpContextWrapper(Context);
+            var existingRouteData = RouteTable.Routes.GetRouteData(httpContext);
+            var additionalRouteValues = existingRouteData == null ? new RouteValueDictionary() : existingRouteData.Values ;
             if (!string.IsNullOrEmpty(DataSource))
             {
                 var item = rendering.Database.GetItem(DataSource);
                 if (item != null)
                 {
-                    additionalRouteValues.Add("_sitecoreitem", item);
+                    additionalRouteValues["_sitecoreitem"] = item;
                 }
             }
-            additionalRouteValues.Add("_sitecorerendering", rendering);
+            additionalRouteValues["_sitecorerendering"] = rendering;
 			var parameters = WebUtil.ParseUrlParameters(Parameters);
 			foreach (var key in parameters.AllKeys)
 			{
-				additionalRouteValues.Add(key, parameters[key]);
+				additionalRouteValues[key] = parameters[key];
 			}
 
-			var httpContext = new HttpContextWrapper(Context);
 			var routeData = MvcActionHelper.GetRouteData(
 				httpContext,
 				action.ActionName,

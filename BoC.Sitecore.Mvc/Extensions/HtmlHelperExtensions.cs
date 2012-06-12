@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using System.Web.Routing;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.WebPages;
@@ -20,7 +21,21 @@ namespace System.Web.Mvc.Html
 					)
 			);
 		}
-	}
+
+        public static MvcHtmlString ItemLink(this HtmlHelper html, string linkText, string path, object routevalues = null, object htmlAttributes = null)
+        {
+            var rvd = routevalues == null ? new RouteValueDictionary() : new RouteValueDictionary(routevalues);
+            rvd["path"] = path;
+            return html.RouteLink(linkText, rvd, HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes));
+        }
+
+        public static MvcHtmlString ItemLink(this HtmlHelper html, string linkText, Guid id, object routevalues = null, object htmlAttributes = null)
+        {
+            var rvd = routevalues == null ? new RouteValueDictionary() : new RouteValueDictionary(routevalues);
+            rvd["id"] = id;
+            return html.RouteLink(linkText, rvd, HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes));
+        }
+    }
 
 	class SitecorePlaceholder : ViewUserControl
 	{

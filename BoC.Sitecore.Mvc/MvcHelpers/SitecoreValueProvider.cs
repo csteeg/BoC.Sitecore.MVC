@@ -36,6 +36,9 @@ namespace BoC.Sitecore.Mvc.MvcHelpers
 
         public ValueProviderResult GetValue(string key)
         {
+            if (string.IsNullOrEmpty(key))
+                return null;
+
             if (key.StartsWith("item."))
                 key = key.Substring("item.".Length);
 

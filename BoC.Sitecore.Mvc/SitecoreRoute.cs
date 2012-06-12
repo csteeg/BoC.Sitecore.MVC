@@ -76,7 +76,7 @@ namespace BoC.Sitecore.Mvc
         }
         public override VirtualPathData GetVirtualPath(RequestContext requestContext, RouteValueDictionary values)
         {
-            var item = values["_sitecoreitem"] as Item;
+            var item = values["_sitecoreitem"] as Item ?? values["item"] as Item;
             var requestedPath = new string[0];
             if (item == null)
             {
@@ -86,8 +86,8 @@ namespace BoC.Sitecore.Mvc
                     if (id is string && (id.ToString()).Contains("/"))
                     {
                         if (!(id.ToString()).StartsWith(Context.Site.RootPath))
-                            id = Context.Site.RootPath + "/" + id;
-                        requestedPath = id.ToString().Split('/');
+                            id = Context.Site.RootPath + "/" + id.ToString().TrimStart('/');
+                        requestedPath = id.ToString().Split(new[]{'/'}, StringSplitOptions.RemoveEmptyEntries);
                     }
                     if (id is ID)
                         item = (Context.Database ?? Context.ContentDatabase).GetItem((ID)id);
@@ -102,7 +102,7 @@ namespace BoC.Sitecore.Mvc
                 if (url.StartsWith("~/"))
                     url = url.Substring(2);
 
-                var urlparts = url.Split('/');
+                var urlparts = url.Split(new[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
                 var wildcardItem = item;
                 var i = urlparts.Length-1;
                 using (new SecurityDisabler())
@@ -121,7 +121,7 @@ namespace BoC.Sitecore.Mvc
                                 if (i < requestedPath.Length)
                                 {
                                     //requestedpath is always the full path!
-                                    urlparts[i] = requestedPath[wildcardItem.Paths.FullPath.Split('/').Length-1];
+                                    urlparts[i] = requestedPath[wildcardItem.Paths.FullPath.Split(new[]{'/'}, StringSplitOptions.RemoveEmptyEntries).Length-1];
                                 }
                             }
                         }
