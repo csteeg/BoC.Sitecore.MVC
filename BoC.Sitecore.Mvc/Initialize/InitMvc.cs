@@ -23,6 +23,7 @@ namespace BoC.Sitecore.Mvc.Initialize
             }
             ValueProviderFactories.Factories.Add(new SitecoreValueProviderFactory());
             AreaRegistration.RegisterAllAreas();
+            GlobalFilters.Filters.Add(new SitecoreFilterAttribute());
             GlobalFilters.Filters.Add(new HandleErrorAttribute());
             RouteTable.Routes.Insert(0, new SitecoreRoute());
         }

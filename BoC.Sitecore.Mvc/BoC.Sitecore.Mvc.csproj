@@ -53,6 +53,7 @@
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Extensions\UrlHelperExtensions.cs" />
     <Compile Include="Initialize\InitMvc.cs" />
+    <Compile Include="MvcHelpers\SitecoreFilterAttribute.cs" />
     <Compile Include="MvcHelpers\SitecoreValueProvider.cs" />
     <Compile Include="MvcAbortLoadLayout.cs" />
     <Compile Include="MvcHelpers\ControllerAction.cs" />

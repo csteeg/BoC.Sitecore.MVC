@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
+using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -76,11 +80,13 @@ namespace BoC.Sitecore.Mvc
         }
         public override VirtualPathData GetVirtualPath(RequestContext requestContext, RouteValueDictionary values)
         {
+            var usedValues = new List<string> { "_sitecoreitem" , "item"  };
             var item = values["_sitecoreitem"] as Item ?? values["item"] as Item;
             var requestedPath = new string[0];
             if (item == null)
             {
                 var id = values["path"] ?? values["id"];
+                usedValues.Add(id == values["path"] ? "path" : "id");
                 if (id != null)
                 {
                     if (id is string && (id.ToString()).Contains("/"))
@@ -90,9 +96,13 @@ namespace BoC.Sitecore.Mvc
                         requestedPath = id.ToString().Split(new[]{'/'}, StringSplitOptions.RemoveEmptyEntries);
                     }
                     if (id is ID)
+                    {
                         item = (Context.Database ?? Context.ContentDatabase).GetItem((ID)id);
+                    }
                     else
+                    {
                         item = (Context.Database ?? Context.ContentDatabase).GetItem(id.ToString());
+                    }
                 }
             }
             if (item != null)
@@ -102,9 +112,9 @@ namespace BoC.Sitecore.Mvc
                 if (url.StartsWith("~/"))
                     url = url.Substring(2);
 
-                var urlparts = url.Split(new[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
+                var urlparts = url.Split(new[] {'/'}, StringSplitOptions.RemoveEmptyEntries);
                 var wildcardItem = item;
-                var i = urlparts.Length-1;
+                var i = urlparts.Length - 1;
                 using (new SecurityDisabler())
                 {
                     while (wildcardItem != null && i >= 0)
@@ -121,19 +131,38 @@ namespace BoC.Sitecore.Mvc
                                 if (i < requestedPath.Length)
                                 {
                                     //requestedpath is always the full path!
-                                    urlparts[i] = requestedPath[wildcardItem.Paths.FullPath.Split(new[]{'/'}, StringSplitOptions.RemoveEmptyEntries).Length-1];
+                                    urlparts[i] =
+                                        requestedPath[
+                                            wildcardItem.Paths.FullPath.Split(new[] {'/'},
+                                                                              StringSplitOptions.RemoveEmptyEntries).
+                                                Length - 1];
                                 }
                             }
+                            usedValues.Add(name.ToLower());
                         }
                         wildcardItem = wildcardItem.Parent;
                         i--;
                     }
                 }
-                var newurl = string.Join("/", urlparts);
+                var newurl = new StringBuilder(string.Join("/", urlparts));
                 var extension = Path.GetExtension(url);
-                if (!string.IsNullOrEmpty(extension) && !extension.Equals(Path.GetExtension(newurl)))
-                    newurl += extension;
-                return new VirtualPathData(this, newurl);
+                if (!string.IsNullOrEmpty(extension) && !extension.Equals(Path.GetExtension(newurl.ToString())))
+                    newurl.Append(extension);
+
+                // Add remaining new values as query string parameters to the URL 
+                // Generate the query string
+                bool firstParam = !newurl.ToString().Contains("?");
+                var unusedValues = values.Where(v => !usedValues.Contains(v.Key.ToLower()));
+                foreach (var unusedValue in unusedValues)
+                {
+                    newurl.Append(firstParam ? '?' : '&');
+                    firstParam = false;
+                    newurl.Append(Uri.EscapeDataString(unusedValue.Key));
+                    newurl.Append('=');
+                    newurl.Append(Uri.EscapeDataString(System.Convert.ToString(unusedValue.Value, CultureInfo.InvariantCulture)));
+                }
+
+                return new VirtualPathData(this, newurl.ToString());
             }
 
             return null;
